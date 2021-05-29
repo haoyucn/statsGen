@@ -29,7 +29,7 @@ with table.batch_writer() as batch:
 	)
 
 response = table.query(
-	Limit = 123
+    KeyConditionExpression=Key('username').exits()
 )
 items = response['Items']
 print(items)

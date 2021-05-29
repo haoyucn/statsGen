@@ -1,5 +1,6 @@
 import boto3
 import time
+from boto3.dynamodb.conditions import Key, Attr
 
 dynamodb = boto3.resource('dynamodb')
 
@@ -26,6 +27,13 @@ with table.batch_writer() as batch:
 			'name': 'Hao1'
 		}
 	)
+
+response = table.query(
+    KeyConditionExpression=Key('id'),
+	Limit = 123
+)
+items = response['Items']
+print(items)
 
 print(table.creation_date_time)
 print(time.time() - t1)

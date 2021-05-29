@@ -29,7 +29,7 @@ with table.batch_writer() as batch:
 	)
 
 response = table.query(
-    KeyConditionExpression=Attr('name').exits()
+    KeyConditionExpression=Attr('name').exists()
 )
 items = response['Items']
 print(items)

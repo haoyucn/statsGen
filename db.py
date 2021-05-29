@@ -28,8 +28,8 @@ with table.batch_writer() as batch:
 		}
 	)
 
-response = table.query(
-    KeyConditionExpression=Attr('name').exists()
+response = table.scan(
+    FilterExpression=Attr('name').exists()
 )
 items = response['Items']
 print(items)

@@ -22,7 +22,7 @@ with table.batch_writer() as batch:
 	)
 	batch.put_item(
 		Item={
-			'id': 1,
+			'id': 3,
 			'name': 'Hao1'
 		}
 	)

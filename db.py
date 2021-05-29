@@ -29,7 +29,8 @@ with table.batch_writer() as batch:
 	)
 
 response = table.scan(
-    FilterExpression=Attr('name').exists()
+    FilterExpression=Attr('name').exists(),
+	Limit =2
 )
 items = response['Items']
 print(items)

@@ -20,12 +20,12 @@ with table.batch_writer() as batch:
 			'name': 'Hao2'
 		}
 	)
-	batch.put_item(
-		Item={
-			'id': 3,
-			'name': 'Hao1'
-		}
-	)
+	# batch.put_item(
+	# 	Item={
+	# 		'id': 3,
+	# 		'name': 'Hao1'
+	# 	}
+	# )
 
 print(table.creation_date_time)
 print(time.time() - t1)

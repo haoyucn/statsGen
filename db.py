@@ -29,7 +29,6 @@ with table.batch_writer() as batch:
 	)
 
 response = table.query(
-    KeyConditionExpression=Key('id'),
 	Limit = 123
 )
 items = response['Items']

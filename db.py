@@ -2,6 +2,7 @@ import boto3
 import time
 import json
 
+from http.server import HTTPServer, BaseHTTPRequestHandler
 from boto3.dynamodb.conditions import Key, Attr
 
 dynamodb = boto3.resource('dynamodb')
@@ -28,7 +29,8 @@ def readItems(size):
 		Limit =size
 	)
 	items = response['Items']
-	return items
+	return json.dumps(items)
+
 
 
 # aws dynamodb --endpoint-url http://localhost:8000 create-table \

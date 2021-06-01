@@ -75,6 +75,9 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 				resp = None;
 			self.send_response(status)
 			self.end_headers()
+			print("-----------------------------")
+	  		print(resp)
+			print("-----------------------------")
 			if resp != None:
 				self.wfile.write(bytes(resp, 'utf-8'))
 			else:

@@ -48,40 +48,40 @@ def readItems(size):
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
-		def do_GET(self):
-			amount = int(self.path[1:])
-			resp = None
-			status = 200
-			try:
-				resp = readItems(amount)
-			except:
-				status = 500
-				resp = None;
-			self.send_response(status)
-			self.end_headers()
-			if resp != None:
-				self.wfile.write(bytes(resp, 'utf-8'))
-			else:
-				self.wfile.write(bytes("true", 'utf-8'))
+	def do_GET(self):
+		amount = int(self.path[1:])
+		resp = None
+		status = 200
+		try:
+			resp = readItems(amount)
+		except:
+			status = 500
+			resp = None;
+		self.send_response(status)
+		self.end_headers()
+		if resp != None:
+			self.wfile.write(bytes(resp, 'utf-8'))
+		else:
+			self.wfile.write(bytes("true", 'utf-8'))
 
-		def do_POST(self):
-			amount = int(self.path[1:])
-			resp = None
-			status = 200
-			try:
-				resp = writeItems(amount)
-			except:
-				status = 500
-				resp = None;
-			self.send_response(status)
-			self.end_headers()
-			print("-----------------------------")
-	  		print(resp)
-			print("-----------------------------")
-			if resp != None:
-				self.wfile.write(bytes(resp, 'utf-8'))
-			else:
-				self.wfile.write(bytes("true", 'utf-8'))
+	def do_POST(self):
+		amount = int(self.path[1:])
+		resp = None
+		status = 200
+		try:
+			resp = writeItems(amount)
+		except:
+			status = 500
+			resp = None;
+		self.send_response(status)
+		self.end_headers()
+		print("-----------------------------")
+		print(resp)
+		print("-----------------------------")
+		if resp != None:
+			self.wfile.write(bytes(resp, 'utf-8'))
+		else:
+			self.wfile.write(bytes("true", 'utf-8'))
 
 
 writeItems(200)

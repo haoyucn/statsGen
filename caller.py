@@ -32,7 +32,7 @@ totalMax = 300
 
 logger = logging.getLogger('mylogger')
 
-handler = logging.FileHandler('example.log')
+handler = logging.FileHandler('./example.log')
 logger.addHandler(handler)
 
 logger.info('So should this')

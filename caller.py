@@ -60,7 +60,7 @@ class myThread (threading.Thread):
 		while exitFlag != 1:
 			if self.needMoreProc():
 				self.modifyRunningCount(1)
-				reqAmount = reqAmounts(random.randint(0, len(reqAmounts)-1))
+				reqAmount = reqAmounts[random.randint(0, len(reqAmounts)-1)]
 				reqType = " "
 				if random.randint(0, 1):
 					# make get

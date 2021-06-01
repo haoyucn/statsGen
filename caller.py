@@ -28,8 +28,14 @@ totalCountLock = threading.Lock()
 global totalMax
 totalMax = 300
 
-logging.basicConfig(filename='example.log')
-logging.info('So should this')
+
+
+logger = logging.getLogger('mylogger')
+
+handler = logging.FileHandler('example.log')
+logger.addHandler(handler)
+
+logger.info('So should this')
 
 def setNeededAmount():
 	global totalCountLock
@@ -45,7 +51,7 @@ def setNeededAmount():
 	neededAccount = na
 	neededAccountLock.release()
 	totalCountLock.release()
-	logging.info(str(time.time()) + " setParallelMax:" + str(na))
+	logger.info(str(time.time()) + " setParallelMax:" + str(na))
 
 class myThread (threading.Thread):
 	def __init__(self, name, url):
@@ -65,14 +71,14 @@ class myThread (threading.Thread):
 				if random.randint(0, 1):
 					# make get
 					reqType = " get "
-					logging.info(str(time.time()) + " reqId:" + self.name + str(self.counter) + reqType + str(reqAmount) + " start")
+					logger.info(str(time.time()) + " reqId:" + self.name + str(self.counter) + reqType + str(reqAmount) + " start")
 					response = requests.get(self.url + '/'+ str(reqAmount))
 				else:
 					reqType = " post "
-					logging.info(str(time.time()) + " reqId:" + self.name + str(self.counter) + reqType + str(reqAmount) + " start")
+					logger.info(str(time.time()) + " reqId:" + self.name + str(self.counter) + reqType + str(reqAmount) + " start")
 					response = requests.post(self.url + '/'+ str(reqAmount))
 
-				logging.info(str(time.time()) + " reqId:" + self.name + str(self.counter) + reqType + str(reqAmount) + " end")
+				logger.info(str(time.time()) + " reqId:" + self.name + str(self.counter) + reqType + str(reqAmount) + " end")
 				self.incrementTotal()
 				self.counter = self.counter + 1
 				self.modifyRunningCount(-1)

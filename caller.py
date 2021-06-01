@@ -111,9 +111,9 @@ class myThread (threading.Thread):
 			exitFlag = 1
 
 # Create new threads
-totalMax = 300
+totalMax = 10
 threads = []
-url = ""
+url = "http://ec2-54-68-23-254.us-west-2.compute.amazonaws.com:8000"
 for i in range(11):
 	threads.append(myThread("Thread-" + str(i), url))
 

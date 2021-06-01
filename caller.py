@@ -6,7 +6,6 @@ import random
 global exitFlag
 exitFlag = 0
 
-logging.info('So should this')
 
 global runningCountLock
 runningCountLock = threading.Lock()
@@ -29,7 +28,8 @@ totalCountLock = threading.Lock()
 global totalMax
 totalMax = 300
 
-logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.DEBUG)
+logging.basicConfig(filename='example.log')
+logging.info('So should this')
 
 def setNeededAmount():
 	global totalCountLock

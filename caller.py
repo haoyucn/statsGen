@@ -31,6 +31,7 @@ totalMax = 300
 
 
 logger = logging.getLogger('mylogger')
+logger.setLevel(logging.INFO)
 
 handler = logging.FileHandler('./example.log')
 logger.addHandler(handler)

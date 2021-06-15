@@ -6,18 +6,28 @@ import random
 global exitFlag
 exitFlag = 0
 
+global VIOLATION_PERCENT
+VIOLATION_PERCENT = 0.1
+global ITERATION_SIZE
+ITERATION_SIZE = 40
 
 global runningCountLock
 runningCountLock = threading.Lock()
 
-global runningCount
-runningCount = 0
+global runningReadCount
+runningReadCount = 0
+global runningWriteCount
+runningWriteCount = 0
 
-global neededAccount
-neededAccount = 4
+
 
 global neededAccountLock
 neededAccountLock = threading.Lock()
+
+global neededRead
+neededRead = 4 
+global neededWrite
+neededWrite = 4
 
 global totalCount
 totalCount = 0
@@ -36,23 +46,54 @@ logger.setLevel(logging.INFO)
 handler = logging.FileHandler('./example.log')
 logger.addHandler(handler)
 
-logger.info('So should this')
-
-def setNeededAmount():
+# tells if need more get or post or none
+def setNeededType():
 	global totalCountLock
 	totalCountLock.acquire()
+	global VIOLATION_PERCENT
+	global ITERATION_SIZE
 	global totalCount
-	if totalCount % 40 > 15:
-		na = 11
-	else:
-		na = 4
-	global neededAccountLock
-	neededAccountLock.acquire()
-	global neededAccount
-	neededAccount = na
-	neededAccountLock.release()
+	thresholdVioLation = False
+	thresholdVioReset = False
+	if totalCount % ITERATION_SIZE == (ITERATION_SIZE * (1-VIOLATION_PERCENT)):
+		thresholdVioLation = True
+	elif totalCount % ITERATION_SIZE == 0:
+		thresholdVioReset = True
 	totalCountLock.release()
-	logger.info(str(time.time()) + " setParallelMax:" + str(na))
+	
+	
+	if (thresholdVioLation):
+		global neededAccountLock
+		neededAccountLock.acquire()
+		vioType = random.randint(0, 2) #0: read, 1: write, 2:both
+		if vioType == 0:
+			global neededRead
+			global neededWrite
+			neededRead = 6 
+			logger.info(str(time.time()) + " set violation:true neededRead:" + str(neededRead) + " neededWrite:" + str(neededWrite))
+		elif vioType == 1:
+			global neededWrite
+			global neededWrite
+			neededWrite = 6
+			logger.info(str(time.time()) + " set violation:true neededRead:" + str(neededRead) + " neededWrite:" + str(neededWrite))
+		else:
+			global neededRead
+			neededRead = 6
+			global neededWrite
+			neededWrite = 6
+			logger.info(str(time.time()) + " set violation:true neededRead:" + str(neededRead) + " neededWrite:" + str(neededWrite))
+		neededAccountLock.release()
+		
+	
+	if thresholdVioReset:
+		global neededAccountLock
+		neededAccountLock.acquire()
+		global neededRead
+		neededRead = 4
+		global neededWrite
+		neededWrite = 4
+		logger.info(str(time.time()) + " set violation:false neededRead:" + str(neededRead) + " neededWrite:" + str(neededWrite))
+		neededAccountLock.release()
 
 class myThread (threading.Thread):
 	def __init__(self, name, url):
@@ -65,45 +106,72 @@ class myThread (threading.Thread):
 		reqAmounts = [10, 50, 80, 200, 100]
 		global exitFlag
 		while exitFlag != 1:
-			if self.needMoreProc():
-				self.modifyRunningCount(1)
+			neededProcess = self.getNeededProc()
+			if len(neededProcess) > 1:
 				reqAmount = reqAmounts[random.randint(0, len(reqAmounts)-1)]
 				reqType = " "
-				if random.randint(0, 1):
+				
+				if neededProcess == 'r':
 					# make get
 					reqType = " get "
+					self.modifyRunningCount(1, 'r')
 					logger.info(str(time.time()) + " reqId:" + self.name + str(self.counter) + reqType + str(reqAmount) + " start")
 					response = requests.get(self.url + '/'+ str(reqAmount))
 				else:
 					reqType = " post "
+					self.modifyRunningCount(1, 'w')
 					logger.info(str(time.time()) + " reqId:" + self.name + str(self.counter) + reqType + str(reqAmount) + " start")
 					response = requests.post(self.url + '/'+ str(reqAmount))
 
 				logger.info(str(time.time()) + " reqId:" + self.name + str(self.counter) + reqType + str(reqAmount) + " end")
 				self.incrementTotal()
 				self.counter = self.counter + 1
-				self.modifyRunningCount(-1)
-				setNeededAmount()
+				if (reqType == " get "):
+					self.modifyRunningCount(-1, 'r')
+				else:
+					self.modifyRunningCount(-1, 'w')
+				setNeededType()
 
 
 			
 
-	def modifyRunningCount(self, c):
+	def modifyRunningCount(self, c, type):
 		global runningCountLock
 		runningCountLock.acquire()
-		global runningCount
-		runningCount = runningCount + c
+
+		if type == 'r':
+			global runningReadCount
+			runningReadCount = runningReadCount + c
+		else:
+			global runningWriteCount
+			runningWriteCount = runningWriteCount + c
+		
 		runningCountLock.release()
 
-	def needMoreProc(self):
+	def getNeededProc(self):
+		neededType = ""
 		global neededAccountLock
 		neededAccountLock.acquire()
-		global neededAccount
-		if neededAccount < 5:
-			neededAccountLock.release()
-			return True
+		global neededRead
+		global neededWrite
+		global runningCountLock
+		runningCountLock.acquire()
+		global runningReadCount
+		global runningWriteCount
+		if random.randint(0, 1) == 0:
+			if runningReadCount < neededRead:
+				neededType = 'r'
+			elif runningWriteCount < neededWrite:
+				neededType = 'w'
+		else:
+			if runningWriteCount < neededWrite:
+				neededType = 'w'
+			elif runningReadCount < neededRead:
+				neededType = 'r'
+		runningCountLock.release()
 		neededAccountLock.release()
-		return False
+
+		return neededType;
 
 	def incrementTotal(self):
 		global totalCountLock
@@ -120,7 +188,7 @@ class myThread (threading.Thread):
 # Create new threads
 totalMax = 10
 threads = []
-url = "http://ec2-54-68-23-254.us-west-2.compute.amazonaws.com:8000"
+url = "http://ec2-54-187-235-151.us-west-2.compute.amazonaws.com:8000"
 for i in range(11):
 	threads.append(myThread("Thread-" + str(i), url))
 

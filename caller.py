@@ -65,21 +65,18 @@ def setNeededType():
 	if (thresholdVioLation):
 		global neededAccountLock
 		neededAccountLock.acquire()
+		global neededRead
+		global neededWrite
 		vioType = random.randint(0, 2) #0: read, 1: write, 2:both
 		if vioType == 0:
-			global neededRead
-			global neededWrite
+			
 			neededRead = 6 
 			logger.info(str(time.time()) + " set violation:true neededRead:" + str(neededRead) + " neededWrite:" + str(neededWrite))
 		elif vioType == 1:
-			global neededWrite
-			global neededWrite
 			neededWrite = 6
 			logger.info(str(time.time()) + " set violation:true neededRead:" + str(neededRead) + " neededWrite:" + str(neededWrite))
 		else:
-			global neededRead
 			neededRead = 6
-			global neededWrite
 			neededWrite = 6
 			logger.info(str(time.time()) + " set violation:true neededRead:" + str(neededRead) + " neededWrite:" + str(neededWrite))
 		neededAccountLock.release()

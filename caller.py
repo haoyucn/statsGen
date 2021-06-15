@@ -7,7 +7,7 @@ global exitFlag
 exitFlag = 0
 
 global VIOLATION_PERCENT
-VIOLATION_PERCENT = 0.1
+VIOLATION_PERCENT = 0.2
 global ITERATION_SIZE
 ITERATION_SIZE = 40
 
@@ -178,7 +178,7 @@ class myThread (threading.Thread):
 			exitFlag = 1
 
 # Create new threads
-totalMax = 10
+totalMax = ITERATION_SIZE * 5
 threads = []
 url = "http://ec2-54-187-235-151.us-west-2.compute.amazonaws.com:8000"
 for i in range(11):

@@ -99,7 +99,7 @@ class myThread (threading.Thread):
 		global exitFlag
 		while exitFlag != 1:
 			neededProcess = self.getNeededProc()
-			if len(neededProcess) > 1:
+			if len(neededProcess) > 0:
 				reqAmount = reqAmounts[random.randint(0, len(reqAmounts)-1)]
 				reqType = " "
 				

@@ -43,7 +43,7 @@ totalMax = 300
 logger = logging.getLogger('mylogger')
 logger.setLevel(logging.INFO)
 
-handler = logging.FileHandler('./example.log')
+handler = logging.FileHandler('./example3.log')
 logger.addHandler(handler)
 
 # tells if need more get or post or none
@@ -102,18 +102,25 @@ class myThread (threading.Thread):
 			if len(neededProcess) > 0:
 				reqAmount = reqAmounts[random.randint(0, len(reqAmounts)-1)]
 				reqType = " "
-				
+				reqException = ""
 				if neededProcess == 'r':
 					# make get
 					reqType = " get "
 					self.modifyRunningCount(1, 'r')
 					logger.info(str(time.time()) + " reqId:" + self.name + str(self.counter) + reqType + str(reqAmount) + " start")
-					response = requests.get(self.url + '/'+ str(reqAmount))
+					try:
+						response = requests.get(self.url + '/'+ str(reqAmount))
+					except:
+						reqException = " exception"
 				else:
 					reqType = " post "
 					self.modifyRunningCount(1, 'w')
 					logger.info(str(time.time()) + " reqId:" + self.name + str(self.counter) + reqType + str(reqAmount) + " start")
-					response = requests.post(self.url + '/'+ str(reqAmount))
+
+					try:
+						response = requests.post(self.url + '/'+ str(reqAmount))
+					except:
+						reqException = " exception"
 
 				logger.info(str(time.time()) + " reqId:" + self.name + str(self.counter) + reqType + str(reqAmount) + " end")
 				self.incrementTotal()

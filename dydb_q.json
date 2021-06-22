@@ -1,0 +1,158 @@
+[
+    {
+        "Id": "mReturnedItemCount",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/DynamoDB",
+                "MetricName": "ReturnedItemCount",
+                "Dimensions": [
+                    {
+                        "Name": "TableName",
+                        "Value": "User"
+                    },
+                    {
+                        "Name": "Operation",
+                        "Value": "Scan"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mThrottledRequests",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/DynamoDB",
+                "MetricName": "ThrottledRequests",
+                "Dimensions": [
+                    {
+                        "Name": "TableName",
+                        "Value": "User"
+                    },
+                    {
+                        "Name": "Operation",
+                        "Value": "BatchWriteItem"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mSuccessfulRequestLatency",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/DynamoDB",
+                "MetricName": "SuccessfulRequestLatency",
+                "Dimensions": [
+                    {
+                        "Name": "TableName",
+                        "Value": "User"
+                    },
+                    {
+                        "Name": "Operation",
+                        "Value": "Scan"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mWriteThrottleEvents",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/DynamoDB",
+                "MetricName": "WriteThrottleEvents",
+                "Dimensions": [
+                    {
+                        "Name": "TableName",
+                        "Value": "User"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mConsumedReadCapacityUnits",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/DynamoDB",
+                "MetricName": "ConsumedReadCapacityUnits",
+                "Dimensions": [
+                    {
+                        "Name": "TableName",
+                        "Value": "User"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mProvisionedWriteCapacityUnits",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/DynamoDB",
+                "MetricName": "ProvisionedWriteCapacityUnits",
+                "Dimensions": [
+                    {
+                        "Name": "TableName",
+                        "Value": "User"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mConsumedWriteCapacityUnits",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/DynamoDB",
+                "MetricName": "ConsumedWriteCapacityUnits",
+                "Dimensions": [
+                    {
+                        "Name": "TableName",
+                        "Value": "User"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mProvisionedReadCapacityUnits",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/DynamoDB",
+                "MetricName": "ProvisionedReadCapacityUnits",
+                "Dimensions": [
+                    {
+                        "Name": "TableName",
+                        "Value": "User"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+        },
+        "ReturnData": true
+    }
+]

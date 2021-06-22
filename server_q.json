@@ -1,0 +1,305 @@
+[
+    {
+        "Id": "mCPUCreditUsage",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/EC2",
+                "MetricName": "CPUCreditUsage",
+                "Dimensions": [
+                    {
+                        "Name": "InstanceId",
+                        "Value": "i-0c87b76ef6321cbc9"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mCPUCreditBalance",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/EC2",
+                "MetricName": "CPUCreditBalance",
+                "Dimensions": [
+                    {
+                        "Name": "InstanceId",
+                        "Value": "i-0c87b76ef6321cbc9"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+            
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mCPUSurplusCreditBalance",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/EC2",
+                "MetricName": "CPUSurplusCreditBalance",
+                "Dimensions": [
+                    {
+                        "Name": "InstanceId",
+                        "Value": "i-0c87b76ef6321cbc9"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+            
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mCPUSurplusCreditsCharged",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/EC2",
+                "MetricName": "CPUSurplusCreditsCharged",
+                "Dimensions": [
+                    {
+                        "Name": "InstanceId",
+                        "Value": "i-0c87b76ef6321cbc9"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+            
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mDiskWriteBytes",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/EC2",
+                "MetricName": "DiskWriteBytes",
+                "Dimensions": [
+                    {
+                        "Name": "InstanceId",
+                        "Value": "i-0c87b76ef6321cbc9"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+            
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mDiskReadOps",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/EC2",
+                "MetricName": "DiskReadOps",
+                "Dimensions": [
+                    {
+                        "Name": "InstanceId",
+                        "Value": "i-0c87b76ef6321cbc9"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+            
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mDiskWriteOps",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/EC2",
+                "MetricName": "DiskWriteOps",
+                "Dimensions": [
+                    {
+                        "Name": "InstanceId",
+                        "Value": "i-0c87b76ef6321cbc9"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+            
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mNetworkPacketsIn",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/EC2",
+                "MetricName": "NetworkPacketsIn",
+                "Dimensions": [
+                    {
+                        "Name": "InstanceId",
+                        "Value": "i-0c87b76ef6321cbc9"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+            
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mNetworkPacketsOut",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/EC2",
+                "MetricName": "NetworkPacketsOut",
+                "Dimensions": [
+                    {
+                        "Name": "InstanceId",
+                        "Value": "i-0c87b76ef6321cbc9"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+            
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mCPUUtilization",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/EC2",
+                "MetricName": "CPUUtilization",
+                "Dimensions": [
+                    {
+                        "Name": "InstanceId",
+                        "Value": "i-0c87b76ef6321cbc9"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+            
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mNetworkIn",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/EC2",
+                "MetricName": "NetworkIn",
+                "Dimensions": [
+                    {
+                        "Name": "InstanceId",
+                        "Value": "i-0c87b76ef6321cbc9"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+            
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mNetworkOut",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/EC2",
+                "MetricName": "NetworkOut",
+                "Dimensions": [
+                    {
+                        "Name": "InstanceId",
+                        "Value": "i-0c87b76ef6321cbc9"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+            
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mDiskReadBytes",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/EC2",
+                "MetricName": "DiskReadBytes",
+                "Dimensions": [
+                    {
+                        "Name": "InstanceId",
+                        "Value": "i-0c87b76ef6321cbc9"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+            
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mMetadataNoToken",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/EC2",
+                "MetricName": "MetadataNoToken",
+                "Dimensions": [
+                    {
+                        "Name": "InstanceId",
+                        "Value": "i-0c87b76ef6321cbc9"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+            
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mStatusCheckFailed_System",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/EC2",
+                "MetricName": "StatusCheckFailed_System",
+                "Dimensions": [
+                    {
+                        "Name": "InstanceId",
+                        "Value": "i-0c87b76ef6321cbc9"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+            
+        },
+        "ReturnData": true
+    },
+    {
+        "Id": "mStatusCheckFailed_Instance",
+        "MetricStat": {
+            "Metric": {
+                "Namespace": "AWS/EC2",
+                "MetricName": "StatusCheckFailed_Instance",
+                "Dimensions": [
+                    {
+                        "Name": "InstanceId",
+                        "Value": "i-0c87b76ef6321cbc9"
+                    }
+                ]
+            },
+            "Period": 60,
+            "Stat": "Average"
+            
+        },
+        "ReturnData": true
+    }
+]

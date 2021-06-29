@@ -8,6 +8,9 @@ aws cloudwatch get-metric-data --start-time 2021-06-13T20:00:00Z --end-time 2021
 
 aws cloudwatch get-metric-data --metric-data-queries file://./client_q.json
 
+aws cloudwatch get-metric-data --start-time 2021-06-13T20:00:00Z --end-time 2021-06-16T03:00:00Z --metric-data-queries file://./server_q.json >> server_data.txt
+
+
 aws cloudwatch get-dashboard --dashboard-name ec2Watch
 
 
